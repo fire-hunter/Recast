@@ -20,17 +20,17 @@
 # THE SOFTWARE.
 #
 
-# Define target name
-set (TARGET_NAME Recast)
+cmake_minimum_required(VERSION 3.5)
 
-# Define source files
-define_source_files (GLOB_CPP_PATTERNS source/*.cpp GLOB_H_PATTERNS include/*.h)
+# Define target name
+project(Recast VERSION 1.4.0)
 
 # Define dependency libs
 set (INCLUDE_DIRS include)
 
-# Setup target
-setup_library ()
+# Define source files
+file (GLOB PROJECT_SOURCE source/*.cpp)
+file(GLOB PROJECT_HEADER include/*.h)
+set (INCLUDE_DIRS include)
 
-# Install headers for building the Urho3D library
-install_header_files (DIRECTORY include/ DESTINATION ${DEST_INCLUDE_DIR}/ThirdParty/Recast FILES_MATCHING PATTERN *.h BUILD_TREE_ONLY)  # Note: the trailing slash is significant
+include(GenericInstall.cmake)
